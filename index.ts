@@ -1,7 +1,11 @@
 import express from 'express';
-const app = express();
-const todos: Array<{ title: string, checked: boolean }> = [];
+import cors from 'cors';
 
+const app = express();
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+const todos: Array<{ title: string, checked: boolean }> = [];
 app.post('/api/todo/create', (req, res) => {
     const { title, checked } = req.body;
     todos.push({ title, checked });
